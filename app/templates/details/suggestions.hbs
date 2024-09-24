@@ -1,0 +1,7 @@
+{{page-title "Suggestions"}}
+
+<h2>Suggestions</h2>
+{{#each @model as |suggestion|}}
+  <AiSuggestion @suggestion={{suggestion}} />
+{{/each}}
+{{outlet}}

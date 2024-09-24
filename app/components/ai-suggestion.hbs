@@ -1,0 +1,9 @@
+<div>
+  <span>ai suggestion:</span>
+  <span>{{@suggestion.body}}</span>
+</div>
+<div>
+  <AuButton {{on "click" this.onAccept}}>👍</AuButton>
+  <AuButton {{on "click" this.onReject}}>👎</AuButton>
+</div>
+{{yield}}
