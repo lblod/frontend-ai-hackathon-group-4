@@ -1,0 +1,22 @@
+<AuInput
+  @icon="search"
+  @width="block"
+  @value={{this.search}}
+  {{on 'input' this.setSearch}}
+/>
+
+{{#if this.results.isRunning}}
+  <AuLoader >
+    Loading...
+  </AuLoader>
+{{else if this.results.value}}
+  <ul>
+    {{#each this.results.value as |result|}}
+      <li>
+        {{result.naam}}
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>Search to find your monument.</p>
+{{/if}}
