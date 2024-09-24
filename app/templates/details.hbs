@@ -1,2 +1,6 @@
 {{page-title "Details"}}
-<p>Details for {{@model.id}}</p>
+{{#if @model}}
+  <p>Details for {{@model.id}}</p>
+{{else}}
+  <p>Unable to find monument.</p>
+{{/if}}
