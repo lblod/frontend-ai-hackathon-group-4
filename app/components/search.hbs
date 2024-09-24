@@ -13,7 +13,24 @@
   <ul>
     {{#each this.results.value as |result|}}
       <li>
-        {{result.naam}}
+        <AuCard
+          @title={{result.naam}}
+          as |card|
+        >
+          <card.header>
+            <AuHeading @level="3" @skin="3">
+              {{result.naam}}
+            </AuHeading>
+          </card.header>
+          <card.content>
+            <p>
+              {{result.korte_beschrijving}}
+            </p>
+          </card.content>
+          <card.footer>
+            <AuLink @route="details" @model={{result.id}} @skin="button">Select</AuLink>
+          </card.footer>
+        </AuCard>
       </li>
     {{/each}}
   </ul>
