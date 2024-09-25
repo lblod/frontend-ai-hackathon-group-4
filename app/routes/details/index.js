@@ -9,9 +9,16 @@ export default class DetailsIndexRoute extends Route {
     const decisionWithSummary = await Promise.all(
       decisions.map(async (decision) => {
         const annotations = await decision.annotations;
-        const summary = annotations.find(
-          (annotation) => annotation.type.id === SUMMARY_ANNOTATION_ID
+        let target = null;
+        await Promise.all(
+          annotations.map(async (annotation) => {
+            const type = await annotation.annotationType;
+            if (type.id === SUMMARY_ANNOTATION_ID) {
+              target = annotation;
+            }
+          })
         );
+        const summary = target;
         return {
           decision,
           summary,
