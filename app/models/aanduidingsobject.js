@@ -1,4 +1,4 @@
-import Model, { attr } from '@ember-data/model';
+import Model, { attr, hasMany } from '@ember-data/model';
 
 export default class AanduidingsobjectModel extends Model {
   @attr('string') uri;
@@ -13,4 +13,10 @@ export default class AanduidingsobjectModel extends Model {
   //            (concept :via ,(s-prefix "cidoc:P2_has_type")
   //                      :as "typology"))
   // :on-path "aanduidingsobjects")
+
+  @hasMany('besluit', {
+    async: true,
+    inverse: 'aanduidingsobject',
+  })
+  besluiten;
 }

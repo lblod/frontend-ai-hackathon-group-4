@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import { getMonument } from '../utils/monuments';
+import { getBesluit } from '../utils/besluit';
 
 export default class DetailsRoute extends Route {
   @service store;
@@ -24,6 +25,7 @@ export default class DetailsRoute extends Route {
           creation: monument.systemfields?.created_at,
         });
         await object.save();
+        await this.createdBesluiten(object, monument);
         return object;
       }
     } catch (err) {
@@ -32,5 +34,29 @@ export default class DetailsRoute extends Route {
       }
       return false;
     }
+  }
+
+  async createdBesluiten(object, monument) {
+    await Promise.all(
+      (monument.besluiten || []).map(async (besluit) => {
+        const besluitId = besluit.uri.split('/').pop();
+        const apiBesluit = await getBesluit(besluitId);
+        await Promise.all(
+          apiBesluit.bestanden.map(async (file) => {
+            if (file?.bestandssoort?.soort !== 'Besluit') {
+              return;
+            }
+            const fileId = file.id;
+            const decision = this.store.createRecord('besluit', {
+              title: besluit.onderwerp,
+              besluitUri: besluit.uri,
+              download: `https://besluiten.onroerenderfgoed.be/besluiten/${besluitId}/bestanden/${fileId}`,
+              aanduidingsobject: object,
+            });
+            decision.save();
+          })
+        );
+      })
+    );
   }
 }
