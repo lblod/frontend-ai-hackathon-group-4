@@ -1,9 +1,52 @@
-<div>
-  <span>ai suggestion:</span>
-  <span>{{@suggestion.body}}</span>
+<div class="au-u-padding">
+  <div>
+    <div
+      class="au-u-flex au-u-flex--between au-u-flex--spaced au-u-flex--vertical-start"
+    >
+      <AuHeading level={{3}} skin={{3}}>Samenvatting Besluit</AuHeading>
+      <AuPill @skin="warning" @icon="info-circle">AI Generated</AuPill>
+    </div>
+    <span>{{@suggestion.body}}</span>
+  </div>
+  {{#each this.feedbacks as |feedback|}}
+    <div class="au-u-padding-top">
+      <div>
+        {{#if (gt feedback.rating 0)}}
+          <AuLabel>Suggestie Geaccepteerd 👍</AuLabel>
+        {{else}}
+          <AuLabel>Suggestie Afgewezen 👎</AuLabel>
+        {{/if}}
+      </div>
+      <div>{{feedback.feedback}}</div>
+    </div>
+  {{else}}
+    <div class="au-u-padding-top">
+      <AuButton {{on "click" this.onAccept}}>👍</AuButton>
+      <AuButton {{on "click" this.onReject}}>👎</AuButton>
+    </div>
+  {{/each}}
+
 </div>
-<div>
-  <AuButton {{on "click" this.onAccept}}>👍</AuButton>
-  <AuButton {{on "click" this.onReject}}>👎</AuButton>
-</div>
+<AuModal
+  @modalOpen={{this.modalOpen}}
+  @closable={{true}}
+  @closeModal={{this.closeModal}}
+>
+  <:title>Samenvatting
+    {{if (gt this.rating 0) "Accepteren" "Afwijzen"}}</:title>
+  <:body>
+    <AuLabel @for="feedbackInput">Waarom vind je dit een
+      {{if (gt this.rating 0) "goede" "slechte"}}
+      samenvatting?</AuLabel>
+    <AuTextarea
+      @id="feedbackInput"
+      @value={{this.feedbackText}}
+      @width="block"
+      {{on "change" this.handleFeedbackChange}}
+    />
+  </:body>
+  <:footer>
+    <AuButton {{on "click" this.onSubmit}}>Verzenden</AuButton>
+  </:footer>
+</AuModal>
 {{yield}}

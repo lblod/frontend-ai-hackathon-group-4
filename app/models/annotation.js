@@ -11,7 +11,7 @@ export default class AnnotationModel extends Model {
   annotationType;
   @hasMany('annotation-feedback', {
     async: true,
-    inverse: null,
+    inverse: 'annotation',
   })
   feedbacks;
 }
