@@ -1,2 +1,26 @@
-{{page-title "Index"}}
+{{page-title "Besluiten"}}
+
+<AuBodyContainer class="au-u-padding-left au-u-padding-right">
+  {{#each @model as |besluit|}}
+    <AuCard class="height-auto au-u-margin-top" @shadow={{true}} as |c|>
+      <c.header>
+        <AuHeading @level="3" @skin="4">
+          Besluit
+        </AuHeading>
+      </c.header>
+      <c.content>
+        <div
+          class="au-u-flex au-u-flex--between au-u-flex--spaced au-u-flex--vertical-start"
+        >
+          <div>{{besluit.title}}</div>
+          <AuLinkExternal
+            @icon="file"
+            @skin="button"
+            href={{besluit.download}}
+          >Download</AuLinkExternal>
+        </div>
+      </c.content>
+    </AuCard>
+  {{/each}}
+</AuBodyContainer>
 {{outlet}}

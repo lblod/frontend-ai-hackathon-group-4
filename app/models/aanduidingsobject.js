@@ -18,5 +18,5 @@ export default class AanduidingsobjectModel extends Model {
     async: true,
     inverse: 'aanduidingsobject',
   })
-  besluiten;
+  decisions;
 }
