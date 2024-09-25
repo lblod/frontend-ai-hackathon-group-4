@@ -5,4 +5,18 @@
   <p>Unable to find monument.</p>
 {{/if}}
 
+<AuTabs as |Tab|>
+  <Tab>
+    <AuLink @route="details.suggestions">Besluiten</AuLink>
+  </Tab>
+  <Tab>
+    <AuLink @route="details.allowed">Toegestane aanpassingen</AuLink>
+  </Tab>
+  <Tab>
+    <AuLink @route="details.forbidden">Verboden aanpassingen</AuLink>
+  </Tab>
+  <Tab>
+    <AuLink @route="details.permit">Acties met vergunning</AuLink>
+  </Tab>
+</AuTabs>
 {{outlet}}

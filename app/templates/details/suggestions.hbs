@@ -1,7 +1,8 @@
-{{page-title "Suggestions"}}
+{{page-title "Besluiten"}}
 
-<h2>Suggestions</h2>
-{{#each @model as |suggestion|}}
-  <AiSuggestion @suggestion={{suggestion}} />
-{{/each}}
-{{outlet}}
+<AuBodyContainer class="au-u-padding-left au-u-padding-right">
+  {{#each @model as |suggestion|}}
+    <AiSuggestion @suggestion={{suggestion}} />
+  {{/each}}
+  {{outlet}}
+</AuBodyContainer>

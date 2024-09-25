@@ -10,5 +10,8 @@ Router.map(function () {
   this.route('search');
   this.route('details', { path: 'details/:id' }, function () {
     this.route('suggestions');
+    this.route('allowed');
+    this.route('forbidden');
+    this.route('permit');
   });
 });

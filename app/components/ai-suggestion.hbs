@@ -1,10 +1,17 @@
-<div class="au-u-padding">
+<div class="au-u-padding-bottom">
   <div>
     <div
       class="au-u-flex au-u-flex--between au-u-flex--spaced au-u-flex--vertical-start"
     >
-      <AuHeading level={{3}} skin={{3}}>Samenvatting Besluit</AuHeading>
-      <AuPill @skin="warning" @icon="info-circle">AI Generated</AuPill>
+      <AuHeading
+        level={{3}}
+        skin={{3}}
+      >{{@suggestion.annotationType.title}}</AuHeading>
+      <AuPill
+        @skin="warning"
+        @icon="info-circle"
+        class="au-u-margin-top-small"
+      >AI Generated</AuPill>
     </div>
     <span>{{@suggestion.body}}</span>
   </div>
@@ -32,12 +39,12 @@
   @closable={{true}}
   @closeModal={{this.closeModal}}
 >
-  <:title>Samenvatting
+  <:title>AI Suggestie
     {{if (gt this.rating 0) "Accepteren" "Afwijzen"}}</:title>
   <:body>
     <AuLabel @for="feedbackInput">Waarom vind je dit een
       {{if (gt this.rating 0) "goede" "slechte"}}
-      samenvatting?</AuLabel>
+      suggestie?</AuLabel>
     <AuTextarea
       @id="feedbackInput"
       @value={{this.feedbackText}}
