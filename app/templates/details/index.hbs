@@ -1,35 +1,37 @@
 {{page-title "Besluiten"}}
 
-<AuBodyContainer class="au-u-padding-left au-u-padding-right">
-  {{#each @model as |decisionWithSummary|}}
-    <AuCard class="height-auto au-u-margin-top" @shadow={{true}} as |c|>
-      <c.header>
-        <AuHeading @level="3" @skin="4">
-          Besluit
-        </AuHeading>
-      </c.header>
-      <c.content>
-        <div
-          class="au-u-flex au-u-flex--between au-u-flex--spaced au-u-flex--vertical-start"
-        >
-          <div>{{decisionWithSummary.decision.title}}</div>
-          <AuLinkExternal
-            @icon="file"
-            @skin="button"
-            href={{decisionWithSummary.download}}
-          >Download</AuLinkExternal>
-        </div>
-        {{#if decisionWithSummary.summary}}
-          <AiSuggestion @suggestion={{decisionWithSummary.summary}} />
-        {{else}}
-          <p class="au-u-muted">
-            <AuIcon @icon="info-circle" />
-            <span>Nog geen AI samenvatting beschikbaar, probeer het later
-              opnieuw.</span>
-          </p>
-        {{/if}}
-      </c.content>
-    </AuCard>
-  {{/each}}
-</AuBodyContainer>
+<AuHeading @level="4" @skin="4">
+  Decisions relating to this monument:
+</AuHeading>
+{{#each @model as |decisionWithSummary|}}
+  <AuCard class="height-auto au-u-margin-top" @shadow={{true}} as |c|>
+    <c.header>
+      <AuHeading @level="3" @skin="4">
+        Besluit
+      </AuHeading>
+    </c.header>
+    <c.content>
+      <div
+        class="au-u-flex au-u-flex--between au-u-flex--spaced au-u-flex--vertical-start"
+      >
+        <div>{{decisionWithSummary.decision.title}}</div>
+        <AuLinkExternal
+          @icon="file"
+          @skin="button"
+          href={{decisionWithSummary.download}}
+        >Download</AuLinkExternal>
+      </div>
+      {{#if decisionWithSummary.summary}}
+        <AiSuggestion @suggestion={{decisionWithSummary.summary}} />
+      {{else}}
+        <p class="au-u-muted">
+          <AuIcon @icon="info-circle" />
+          <span>Nog geen AI samenvatting beschikbaar, probeer het later
+            opnieuw.</span>
+        </p>
+      {{/if}}
+    </c.content>
+  </AuCard>
+{{/each}}
+
 {{outlet}}

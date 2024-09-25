@@ -6,7 +6,7 @@ export default class BesluitModel extends Model {
   @attr besluitUri;
   @belongsTo('aanduidingsobject', {
     async: true,
-    inverse: 'besluiten',
+    inverse: 'decisions',
   })
   aanduidingsobject;
 

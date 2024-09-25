@@ -1,25 +1,30 @@
 {{page-title "Details"}}
-{{#if @model}}
-  <p>Details for {{@model.id}}</p>
-{{else}}
-  <p>Unable to find monument.</p>
-{{/if}}
+<AuBodyContainer class="au-u-padding-left au-u-padding-right" @scroll={{true}}>
+  {{#if @model}}
+    <AuHeading @level="3" @skin="3">
+      {{@model.title}}
+    </AuHeading>
+    <p>
+      {{@model.description}}
+    </p>
+    <AuTabs as |Tab|>
+      <Tab>
+        <AuLink @route="details.index">Besluiten</AuLink>
+      </Tab>
+      <Tab>
+        <AuLink @route="details.suggestions">Mock</AuLink>
+      </Tab>
+      <Tab>
+        <AuLink @route="details.allowed">Toegestane aanpassingen</AuLink>
+      </Tab>
+      <Tab>
+        <AuLink @route="details.forbidden">Verboden aanpassingen</AuLink>
+      </Tab>
+      <Tab>
+        <AuLink @route="details.permit">Acties met vergunning</AuLink>
+      </Tab>
+    </AuTabs>
+  {{/if}}
 
-<AuTabs as |Tab|>
-  <Tab>
-    <AuLink @route="details.index">Besluiten</AuLink>
-  </Tab>
-  <Tab>
-    <AuLink @route="details.suggestions">Mock</AuLink>
-  </Tab>
-  <Tab>
-    <AuLink @route="details.allowed">Toegestane aanpassingen</AuLink>
-  </Tab>
-  <Tab>
-    <AuLink @route="details.forbidden">Verboden aanpassingen</AuLink>
-  </Tab>
-  <Tab>
-    <AuLink @route="details.permit">Acties met vergunning</AuLink>
-  </Tab>
-</AuTabs>
-{{outlet}}
+  {{outlet}}
+</AuBodyContainer>

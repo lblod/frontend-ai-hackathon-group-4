@@ -1,8 +1,11 @@
 {{page-title "Besluiten"}}
 
-<AuBodyContainer class="au-u-padding-left au-u-padding-right">
-  {{#each @model as |suggestion|}}
-    <AiSuggestion @suggestion={{suggestion}} />
-  {{/each}}
-  {{outlet}}
-</AuBodyContainer>
+<AuHeading @level="3" @skin="3">Suggestions</AuHeading>
+  <ul>
+    {{#each @model as |suggestion|}}
+      <AuCard>
+        <AiSuggestion @suggestion={{suggestion}} />
+      </AuCard>
+    {{/each}}
+  </ul>
+{{outlet}}
