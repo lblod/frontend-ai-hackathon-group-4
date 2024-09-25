@@ -16,7 +16,7 @@ export default class SearchComponent extends Component {
   doSearch = restartableTask(async () => {
     if (this.search) {
       await timeout(100);
-      return await searchForMonument(this.search);
+      return await searchForMonument({ tekst: this.search });
     } else {
       return false;
     }
