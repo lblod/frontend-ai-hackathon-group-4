@@ -18,7 +18,7 @@
         <AuLinkExternal
           @icon="file"
           @skin="button"
-          href={{decisionWithSummary.download}}
+          href={{decisionWithSummary.decision.download}}
         >Download</AuLinkExternal>
       </div>
       {{#if decisionWithSummary.summary}}
@@ -26,8 +26,7 @@
       {{else}}
         <p class="au-u-muted">
           <AuIcon @icon="info-circle" />
-          <span>Nog geen AI samenvatting beschikbaar, probeer het later
-            opnieuw.</span>
+          <span>Nog geen AI samenvatting beschikbaar, probeer het later opnieuw.</span>
         </p>
       {{/if}}
     </c.content>
